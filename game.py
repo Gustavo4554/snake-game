@@ -1,54 +1,53 @@
-#Aqui vamos importar algumas bibliotecas, o pygame para a a criaçao de jogos 2d, o random que neste caso utilizaremos para gerar posiçoes aleatorias para a fruta e time para pausas e controle de 
-#temporizaçao
+
 import pygame
 import time
 import random
 
-#Inicializa o pygame
+
 pygame.init()
 
-# Define a dimensao da janela do jogo
+
 window_x = 720
 window_y = 480
 
-# Cria a janela e define o nome da mesma
+
 game_window = pygame.display.set_mode((window_x, window_y))
 pygame.display.set_caption('Snake Game')
 
-# Defineas cores
+
 black = pygame.Color(0, 0, 0)
 white = pygame.Color(255, 255, 255)
 red = pygame.Color(255, 0, 0)
 green = pygame.Color(0, 255, 0)
 blue = pygame.Color(0, 0, 255)
 
-# controle de fps
+
 fps = pygame.time.Clock()
 
-# Define a posiçao inicial da cobra
+
 snake_position = [100, 50]
 snake_body = [[100, 50], [90, 50], [80, 50], [70, 50]]  # Define o tamanho inicial da cobra
 
-# Posiçao inicial da fruta gerada aleatoriamente
+
 fruit_position = [random.randrange(1, (window_x // 10)) * 10,
                   random.randrange(1, (window_y // 10)) * 10]
-fruit_spawn = True #indica se uma nova fruta precisa ser gerada
+fruit_spawn = True  
 
-#controlam a direlçao atual e a mudanca desejada da cobra
+
 direction = 'RIGHT'
 change_to = direction
 
-# Placar inicial do jogo
+
 score = 0
 
-#Funçao para exibicao do placar
+
 def show_score(choice, color, font, size):
     score_font = pygame.font.SysFont(font, size)
     score_surface = score_font.render('Score : ' + str(score), True, color)
     score_rect = score_surface.get_rect()
     game_window.blit(score_surface, score_rect)
     
-#Funçao para qaundo der game over
+
 def game_over():
     my_font = pygame.font.SysFont('times new roman', 50)
     game_over_surface = my_font.render('Your Score is : ' + str(score), True, red)
